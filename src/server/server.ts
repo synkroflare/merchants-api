@@ -21,13 +21,19 @@ var httpServer = http.createServer(app);
 var httpsServer = https.createServer(credentials, app);
 
 httpServer.listen(3030, ()  =>  {
-  return ((req, res: Response) => res.status(200).send('OK'))
+  console.log('http online')
     
 })
 
 httpsServer.listen(3031, ()  =>  {
-  return ((req, res: Response) => res.status(200).send('OK'))
+  console.log('https online')
 })
+
+app.get('/' , (req,res)=>{
+  // 200 status code means OK
+  res.sendStatus(200).send(200); 
+})
+
 
 
 
