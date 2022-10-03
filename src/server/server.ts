@@ -20,20 +20,21 @@ var express = require('express');
 var httpServer = http.createServer(app);
 var httpsServer = https.createServer(credentials, app);
 
-httpServer.listen(3030, ()  =>  {
+httpServer.listen(9999, ()  =>  {
   console.log('http online')
     
 })
 
-httpsServer.listen(3031, ()  =>  {
+httpsServer.listen(10000, ()  =>  {
   console.log('https online')
 })
 
-app.get('/' , (req,res)=>{
-  // 200 status code means OK
+app.get('/hcheck' , (req,res)=>{
   console.log('blau')
   res.sendStatus(200); 
 })
+
+
 
 
 
