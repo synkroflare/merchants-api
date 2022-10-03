@@ -22,7 +22,6 @@
   "include": [
     "**/*.ts",
     "**/*.tsx",
-    "next-env.d.ts",
-    "src/server/modules/department/controllers/1CreateDepartmentController"
+    "next-env.d.ts"
   ]
 }

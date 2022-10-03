@@ -32,6 +32,13 @@ httpsServer.listen(10000, ()  =>  {
 app.get('/hcheck' , (req,res)=>{
   console.log('blau')
   res.sendStatus(200); 
+  res.send(201)
+})
+
+app.get('/' , (req,res)=>{
+  console.log('blau')
+  res.sendStatus(200); 
+  res.send(201)
 })
 
 

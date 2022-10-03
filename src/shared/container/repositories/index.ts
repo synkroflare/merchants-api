@@ -2,7 +2,6 @@ import { ICompanyRepository } from '../../../server/modules/global/repositories/
 import { PrismaCompanyRepository } from '../../../server/modules/global/repositories/implementations/prisma/PrismaCompanyRepository'
 
 import { container } from 'tsyringe'
-import { IDepartmentRepository } from '../../../server/modules/global/repositories/IDepartmentRepository'
 import { IUserRepository } from '../../../server/modules/global/repositories/IUserRepository'
 import { PrismaUserRepository } from '../../../server/modules/global/repositories/implementations/prisma/PrismaUserRepository'
 import { PrismaRoomRepository } from '../../../server/modules/global/repositories/implementations/prisma/PrismaRoomRepository'
