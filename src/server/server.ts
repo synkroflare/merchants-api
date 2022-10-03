@@ -21,11 +21,12 @@ var httpServer = http.createServer(app);
 var httpsServer = https.createServer(credentials, app);
 
 httpServer.listen(3030, ()  =>  {
-  (req, res: Response) => res.status(200).send('OK')
+  return ((req, res: Response) => res.status(200).send('OK'))
+    
 })
 
 httpsServer.listen(3031, ()  =>  {
-  (req, res: Response) => res.status(200).send('OK')
+  return ((req, res: Response) => res.status(200).send('OK'))
 })
 
 
