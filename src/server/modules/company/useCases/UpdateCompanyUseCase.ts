@@ -3,9 +3,9 @@ import { inject, injectable } from 'tsyringe'
 import { ICompanyRepository } from '../../global/repositories/ICompanyRepository'
 
 type TRequest = {
-  id: number
-  name: string
-  cnpj: string
+  userId: number
+  slot1: string
+  slot2: string
 }
 
 @injectable()
@@ -15,7 +15,7 @@ export class UpdateCompanyUseCase {
     private companyRepository: ICompanyRepository,
   ) {}
 
-  async execute({ id, name, cnpj }: TRequest): Promise<ICompany | null> {
-    return this.companyRepository.update({ id, name, cnpj })
+  async execute({ userId, slot1, slot2 }: TRequest): Promise<ICompany | null> {
+    return this.companyRepository.update({ userId, slot1, slot2 })
   }
 }

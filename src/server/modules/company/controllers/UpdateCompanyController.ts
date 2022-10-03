@@ -5,10 +5,10 @@ import { UpdateCompanyUseCase } from '../useCases/UpdateCompanyUseCase'
 export class UpdateCompanyController {
   async handle(request: Request, response: Response): Promise<Response> {
     try {
-      const { id } = request.params
-      const { name, cnpj } = request.body
+      const { userId } = request.params
+      const { slot1 , slot2 } = request.body
       const updateCompanyUseCase = container.resolve(UpdateCompanyUseCase)
-      const company = await updateCompanyUseCase.execute({ id: Number(id), name, cnpj })
+      const company = await updateCompanyUseCase.execute({ userId: Number(userId), slot1, slot2 })
 
       return response.status(200).json(company)
     } catch (error: any) {
