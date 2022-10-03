@@ -14,18 +14,20 @@ var https = require('https');
 var privateKey  = fs.readFileSync('key.pem');
 var certificate = fs.readFileSync('cert.pem');
 
+
+
 var credentials = {key: privateKey, cert: certificate};
 var express = require('express');
 
 var httpServer = http.createServer(app);
 var httpsServer = https.createServer(credentials, app);
 
-httpServer.listen(0.0.0.0:$PORT, ()  =>  {
+httpServer.listen(80 , '0.0.0.0', ()  =>  {
   console.log('http online')
     
-})
+})  
 
-httpsServer.listen(0.0.0.0:$PORT, ()  =>  {
+httpServer.listen(80 , '0.0.0.0', ()  =>  {
   console.log('https online')
 })
 
