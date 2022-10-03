@@ -1,4 +1,3 @@
-import { check } from 'prettier';
 import React, { useEffect, componentDidMount } from 'react';
 import {useState} from 'react';
 import {  useNavigate } from 'react-router-dom';

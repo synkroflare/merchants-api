@@ -7,6 +7,35 @@ import { app } from '../shared/infra/http/httpServer'
 const httpPort = process.env.EXPRESS_PORT
 const languageProvider = new I18NextLanguageProvider()
 
+var fs = require('fs');
+var http = require('http');
+var https = require('https');
+var privateKey  = fs.readFileSync('key.pem');
+var certificate = fs.readFileSync('cert.pem');
+
+var credentials = {key: privateKey, cert: certificate};
+var express = require('express');
+
+var httpServer = http.createServer(app);
+var httpsServer = https.createServer(credentials, app);
+
+httpServer.listen(3030);
+httpsServer.listen(3031);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 const WebSocket =  require("ws")
 
 const wss = new WebSocket.Server({ port:8082})
@@ -48,6 +77,7 @@ wss.on("connection", ws => {
   })
 })
 
-app.listen(httpPort, () => {
-  console.log(languageProvider.translate('app.global.serverListening', { port: httpPort }))
-})
+
+
+
+
