@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE `room` ADD COLUMN `currentTurn` INTEGER NOT NULL DEFAULT 1;

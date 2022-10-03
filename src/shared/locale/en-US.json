@@ -1,0 +1,19 @@
+{
+  "replies": {
+    "title": {},
+    "global": {
+      "error": {
+        "unexpectedError": "Something unexpected happened"
+      }
+    }
+  },
+  "alerts": {},
+  "app": {
+    "global": {
+      "serverListening": "Server listening on the port {{port}}"
+    },
+    "errors": {
+      "departmentAlreadyExists": "The department with name '{{name}}' already exists"
+    }
+  }
+}

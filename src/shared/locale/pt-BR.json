@@ -1,0 +1,17 @@
+{
+  "replies": {
+    "title": {},
+    "global": {
+      "error": {
+        "unexpectedError": "Something unexpected happened"
+      }
+    }
+  },
+  "alerts": {},
+  "app": {
+    "global": {
+      "serverListening": "Server listening on the port {{port}}"
+    },
+    "errors": {}
+  }
+}

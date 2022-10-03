@@ -1,0 +1,5 @@
+-- AlterTable
+ALTER TABLE `room` ADD COLUMN `activeUserId` INTEGER NOT NULL DEFAULT 1;
+
+-- AlterTable
+ALTER TABLE `user` ADD COLUMN `userId` INTEGER NOT NULL DEFAULT 1;

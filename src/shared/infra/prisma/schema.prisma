@@ -1,0 +1,151 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model company {
+  id          Int          @id @default(autoincrement())
+  name        String
+  slot1       String
+  slot2       String
+  slot3       String?
+  slot4       String?
+  status      Boolean      @default(true)
+  discovered  Boolean      @default(false)
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  
+  contacts    contact[]
+}
+
+model room {
+  id           Int          @id @default(autoincrement())
+  code         Int
+  currentTurn  Int          @default(1)
+  initialMonth Int          @default(0)
+  activeUserId Int          @default(1)
+  activeUserName String     @default("default_active_user")
+  activeUserSlot Int        @default(1)
+  usedSlots    Int          @default(1)
+  slot1Name    String       @default("default_blank_name")   
+  slot1Id      Int          @default(0)     
+  slot2Name    String       @default("default_blank_name")
+  slot2Id      Int          @default(0)
+  slot3Name    String       @default("default_blank_name")
+  slot3Id      Int          @default(0)
+  slot4Name    String       @default("default_blank_name")
+  slot4Id      Int          @default(0)
+  slot5Name    String       @default("default_blank_name")
+  slot5Id      Int          @default(0)
+  slot6Name    String       @default("default_blank_name")
+  slot6Id      Int          @default(0)
+  slot7Name    String       @default("default_blank_name")
+  slot7Id      Int          @default(0)
+  slot8Name    String       @default("default_blank_name")
+  slot8Id      Int          @default(0)
+  status       Boolean      @default(true)
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt 
+ 
+
+}
+
+model user {
+  id           Int          @id @default(autoincrement())
+  name         String
+  userId       Int          @default(1)
+  status       Boolean      @default(true)
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt  
+  roomId       Int 
+  color        String      @default("none")
+  location     String      @default("default")
+  actions      Int         @default(2)
+  BPD1        Boolean      @default(false)
+  BPD2        Boolean      @default(false)
+  BPD3        Boolean      @default(false)
+  BPD4        Boolean      @default(false)
+  BPD5        Boolean      @default(false)
+  BPD6        Boolean      @default(false)
+  BPD7        Boolean      @default(false)
+  BPD8        Boolean      @default(false)
+  BPD9        Boolean      @default(false)
+  BPD10       Boolean      @default(false)
+  BPD11        Boolean      @default(false)
+  BPD12        Boolean      @default(false)
+  BPD13        Boolean      @default(false)
+  BPD14        Boolean      @default(false)
+  BPD15        Boolean      @default(false)
+  BPD16        Boolean      @default(false)
+  BPD17        Boolean      @default(false)
+  BPD18        Boolean      @default(false)
+  BPD19        Boolean      @default(false)
+  BPD20       Boolean      @default(false)
+  BPD21        Boolean      @default(false)
+  BPD22        Boolean      @default(false)
+  BPD23        Boolean      @default(false)
+  BPD24        Boolean      @default(false)
+  BPD25        Boolean      @default(false)
+  BPD26        Boolean      @default(false)
+  BPD27        Boolean      @default(false)
+  BPD28        Boolean      @default(false)
+  BPD29        Boolean      @default(false)
+  BPD30       Boolean      @default(false)
+
+
+}
+
+model contact {
+  id          Int       @id @default(autoincrement())
+  phoneNumber String?
+  facebookId  String?
+  instagramId String?
+  telegramId  String?
+  websiteId   String?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  chats       chat[]
+  companies   company[]
+}
+
+model serviceHour {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  weekDay   Int
+  startTime DateTime
+  endTime   DateTime
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model chat {
+  id        Int       @id @default(autoincrement())
+  protocol  String
+  status    Boolean   @default(true)
+  type      Int
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  messages  message[]
+  contacts  contact[]
+}
+
+model message {
+  id              Int      @id @default(autoincrement())
+  fromMe          Boolean
+  statusType      Int
+  messageType     Int
+  status          Boolean  @default(true)
+  body            String?
+  mediaUrl        String?
+  mediaFileLength Int?
+  mediaCaption    String?
+  mediaPageCount  Int?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  chatId          Int
+  chat            chat?    @relation(fields: [chatId], references: [id])
+}

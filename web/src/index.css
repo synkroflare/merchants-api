@@ -1,0 +1,22 @@
+body {
+  margin: 0;
+  padding: 0 !important;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Arial',
+    monospace;
+}
+
+
+@font-face {
+  font-family: "Sign45";
+  src: local("Sign45"),
+   url("./fonts/Sign45/Sign45- Old Scratched.otf") format("truetype");
+  font-weight: bold;
+  }
