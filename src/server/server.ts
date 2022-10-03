@@ -20,25 +20,23 @@ var express = require('express');
 var httpServer = http.createServer(app);
 var httpsServer = https.createServer(credentials, app);
 
-httpServer.listen(9999, ()  =>  {
+httpServer.listen(0.0.0.0:$PORT, ()  =>  {
   console.log('http online')
     
 })
 
-httpsServer.listen(10000, ()  =>  {
+httpsServer.listen(0.0.0.0:$PORT, ()  =>  {
   console.log('https online')
 })
 
 app.get('/hcheck' , (req,res)=>{
   console.log('blau')
-  res.sendStatus(200); 
-  res.send(201)
+  res.sendStatus(200)
 })
 
 app.get('/' , (req,res)=>{
   console.log('blau')
-  res.sendStatus(200); 
-  res.send(201)
+  res.sendStatus(200)
 })
 
 
