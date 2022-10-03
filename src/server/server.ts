@@ -31,7 +31,8 @@ httpsServer.listen(3031, ()  =>  {
 
 app.get('/' , (req,res)=>{
   // 200 status code means OK
-  res.sendStatus(200).send(200); 
+  console.log('blau')
+  res.sendStatus(200); 
 })
 
 
