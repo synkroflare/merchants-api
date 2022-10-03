@@ -3,6 +3,7 @@ import 'reflect-metadata'
 import '../shared/container'
 import { I18NextLanguageProvider } from '../shared/providers/LanguageProvider/implementations/I18NextLanguageProvider/I18NextLanguageProvider'
 import { app } from '../shared/infra/http/httpServer'
+import {Response} from 'express'
 
 const httpPort = process.env.EXPRESS_PORT
 const languageProvider = new I18NextLanguageProvider()
@@ -20,9 +21,10 @@ var httpServer = http.createServer(app);
 var httpsServer = https.createServer(credentials, app);
 
 httpServer.listen(3030);
-httpsServer.listen(3031);
 
-
+httpsServer.listen(3031, () => {
+  console.log('success')
+})
 
 
 
