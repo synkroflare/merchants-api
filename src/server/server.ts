@@ -32,12 +32,12 @@ httpsServer.listen(9999 , '0.0.0.0', ()  =>  {
 })
 
 app.get('/hcheck' , (req,res)=>{
-  console.log('blau')
+  console.log('ximbinha')
   res.sendStatus(200)
 })
 
 app.get('/' , (req,res)=>{
-  console.log('blau')
+  console.log('ximbinho')
   res.sendStatus(200)
 })
 

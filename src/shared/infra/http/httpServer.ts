@@ -6,7 +6,8 @@ const app = express()
 
 app.use(json())
 app.use(cors({
-    origin: "https://merchants-front.onrender.com"
+    origin: "*"
+    
 }))
 app.use(router)
 
