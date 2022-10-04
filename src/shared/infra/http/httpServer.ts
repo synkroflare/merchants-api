@@ -4,9 +4,10 @@ import { router } from '../routes'
 
 const app = express()
 
-
 app.use(json())
-app.use(cors())
+app.use(cors({
+    origin: "https://merchants-front.onrender.com"
+}))
 app.use(router)
 
 
