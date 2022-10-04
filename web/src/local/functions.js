@@ -296,7 +296,7 @@ export const getUserData = (userid) => {
 export const checkIfUserExists = (userid) => {
   return new Promise ((resolve, reject) => {
   
-    fetch('http://192.168.0.10:3030/user/check/'+userid,
+    fetch('https://merchants-api.onrender.com/user/check/'+userid,
     { 
       method: 'GET',
       headers: {
@@ -360,7 +360,7 @@ export const checkifUserIsInRoom = (userid) => {
 
   export const createUser = (userid, username) => {
 
-    fetch('http://192.168.0.10:3030/user',
+    fetch('https://merchants-api.onrender.com/user',
     {
       method: 'POST',
       headers: {
