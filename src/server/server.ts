@@ -22,12 +22,12 @@ var express = require('express');
 var httpServer = http.createServer(app);
 var httpsServer = https.createServer(credentials, app);
 
-httpServer.listen(80 , '0.0.0.0', ()  =>  {
+httpServer.listen(10000 , '0.0.0.0', ()  =>  {
   console.log('http online')
     
 })  
 
-httpServer.listen(80 , '0.0.0.0', ()  =>  {
+httpsServer.listen(9999 , '0.0.0.0', ()  =>  {
   console.log('https online')
 })
 
