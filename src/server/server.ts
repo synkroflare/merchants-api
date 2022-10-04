@@ -41,6 +41,11 @@ app.get('/' , (req,res)=>{
   res.sendStatus(200)
 })
 
+app.get('/teste' , (req,res)=>{
+  console.log('maneiro')
+  res.status(200).send('xablinho')
+})
+
 
 
 
