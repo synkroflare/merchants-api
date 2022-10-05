@@ -296,7 +296,7 @@ export const getUserData = (userid) => {
 export const checkIfUserExists = (userid) => {
   return new Promise ((resolve, reject) => {
   
-    fetch('https://merchants-api.onrender.com/user/check/'+userid,
+    fetch('https://192.168.0.10:9999/user/check/'+userid,
     { 
       method: 'GET',
       headers: {
