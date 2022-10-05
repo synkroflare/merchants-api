@@ -1,2 +1,0 @@
--- AlterTable
-ALTER TABLE `room` ADD COLUMN `activeUserSlot` INTEGER NOT NULL DEFAULT 1;

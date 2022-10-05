@@ -9,7 +9,7 @@ import { getUserActions, passTurn, sub1UserAction } from './local/functions';
 
 const BlueprintSearch = () =>{    
 
-    const socket = new WebSocket("ws://192.168.0.10:8082")
+    const socket = new WebSocket("ws://merchants-api.onrender.com:8082")
 
     socket.onopen = () => {
         console.log('open')        
@@ -738,7 +738,7 @@ const BlueprintSearch = () =>{
             let element6Array = [element16, element17, element18]
             
             let arrayArray = [element1Array, element2Array, element3Array, element4Array, element5Array, element6Array]
-            fetch('http://192.168.0.10:3030/company/read/'+sessionStorage.getItem('userid')+'/' + ingredient1 + '-' + ingredient2,
+            fetch('https://merchants-api.onrender.com/company/read/'+sessionStorage.getItem('userid')+'/' + ingredient1 + '-' + ingredient2,
             {                                
             }
             )  

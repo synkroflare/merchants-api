@@ -86,7 +86,7 @@ const Home = () =>{
     }
 
     const handleClick2 = async (code) => {  
-      fetch('http://192.168.0.10:3030/room/update',
+      fetch('https://merchants-api.onrender.com/room/update',
       {
         method: 'PUT',
         headers: {
@@ -101,7 +101,7 @@ const Home = () =>{
     const handleClick1 = async (code) => {
     
             
-            fetch('http://192.168.0.10:3030/company',
+            fetch('https://merchants-api.onrender.com/company',
             {
               method: 'POST',
               headers: {
@@ -113,7 +113,7 @@ const Home = () =>{
             )           
 
 
-            fetch('http://192.168.0.10:3030/room',
+            fetch('https://merchants-api.onrender.com/room',
             {
               method: 'POST',
               headers: {
@@ -156,7 +156,7 @@ const Home = () =>{
                 
                 if (!userIsInRoom){
                   if (roomData[0].status === false) {
-                    fetch('http://192.168.0.10:3030/room/list',
+                    fetch('https://merchants-api.onrender.com/room/list',
                       {
                       
                       }            
@@ -194,7 +194,7 @@ const Home = () =>{
           
           await enterRoom()
           
-          fetch('http://192.168.0.10:3030/user',
+          fetch('https://merchants-api.onrender.com/user',
           {
             method: 'POST',
             headers: {
@@ -206,7 +206,7 @@ const Home = () =>{
           ) 
           sessionStorage.setItem("userid", userId); 
           sessionStorage.setItem("username", userName);
-          fetch('http://192.168.0.10:3030/room/list',
+          fetch('https://merchants-api.onrender.com/room/list',
           {
            
           }            
@@ -239,7 +239,7 @@ const Home = () =>{
       console.log('entered updateroom')
       switch (emptySlot) {
         case 2: 
-        fetch('http://192.168.0.10:3030/room/update',
+        fetch('https://merchants-api.onrender.com/room/update',
         {
           method: 'PUT',
           headers: {
@@ -251,7 +251,7 @@ const Home = () =>{
         )  
           break;
         case 3: 
-        fetch('http://192.168.0.10:3030/room/update',
+        fetch('https://merchants-api.onrender.com/room/update',
         {
           method: 'PUT',
           headers: {
@@ -263,7 +263,7 @@ const Home = () =>{
         )  
           break;
         case 4: 
-        fetch('http://192.168.0.10:3030/room/update',
+        fetch('https://merchants-api.onrender.com/room/update',
         {
           method: 'PUT',
           headers: {
@@ -275,7 +275,7 @@ const Home = () =>{
         )  
           break;
         case 5: 
-        fetch('http://192.168.0.10:3030/room/update',
+        fetch('https://merchants-api.onrender.com/room/update',
         {
           method: 'PUT',
           headers: {
@@ -287,7 +287,7 @@ const Home = () =>{
         )  
           break;
         case 6:
-          fetch('http://192.168.0.10:3030/room/update',
+          fetch('https://merchants-api.onrender.com/room/update',
         {
           method: 'PUT',
           headers: {
@@ -299,7 +299,7 @@ const Home = () =>{
         )   
           break;
         case 7: 
-        fetch('http://192.168.0.10:3030/room/update',
+        fetch('https://merchants-api.onrender.com/room/update',
         {
           method: 'PUT',
           headers: {
@@ -311,7 +311,7 @@ const Home = () =>{
         )  
           break;
         case 8: 
-        fetch('http://192.168.0.10:3030/room/update',
+        fetch('https://merchants-api.onrender.com/room/update',
         {
           method: 'PUT',
           headers: {

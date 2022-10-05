@@ -23,7 +23,7 @@ const Lobby = () =>{
     const [user7Id,setuser7Id] = useState()
     const [user8Id,setuser8Id] = useState()
 
-    let socket = new WebSocket("ws://192.168.0.10:8082");
+    let socket = new WebSocket("ws://merchants-api.onrender.com:8082");
     
 
    
@@ -81,7 +81,7 @@ const Lobby = () =>{
         }
         )
      
-        fetch('http://192.168.0.10:3030/room/list',
+        fetch('https://merchants-api.onrender.com/room/list',
         {                
             headers: {
               'Accept': 'application/json',

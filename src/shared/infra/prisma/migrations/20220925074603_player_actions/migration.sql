@@ -1,2 +1,0 @@
--- AlterTable
-ALTER TABLE `user` ADD COLUMN `actions` INTEGER NOT NULL DEFAULT 2;

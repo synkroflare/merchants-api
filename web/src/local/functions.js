@@ -1,6 +1,6 @@
 export const setUser2Actions = (userid) => {
 
-    fetch('http://192.168.0.10:3030/user/update/'+userid,
+    fetch('https://merchants-api.onrender.com/user/update/'+userid,
     {
       method: 'PUT',
       headers: {
@@ -17,7 +17,7 @@ export const setUser2Actions = (userid) => {
 
 export const getUserActions = (userid) => {
   return new Promise((resolve, reject) => {
-    fetch('http://192.168.0.10:3030/user/read/'+userid,
+    fetch('https://merchants-api.onrender.com/user/read/'+userid,
     { 
       method: 'GET',
       headers: {
@@ -35,7 +35,7 @@ export const getUserActions = (userid) => {
 
 export const checkIfItsYourTurn = (userid) => {
   return new Promise((resolve, reject) => {
-    fetch('http://192.168.0.10:3030/room/list',
+    fetch('https://merchants-api.onrender.com/room/list',
       {  method: 'GET',
       headers: {
         'Accept': 'application/json',
@@ -52,7 +52,7 @@ export const checkIfItsYourTurn = (userid) => {
 }
 
 export const passTurn = async (userid) => {
-    fetch('http://192.168.0.10:3030/room/passturn',
+    fetch('https://merchants-api.onrender.com/room/passturn',
       {  method: 'PUT',
       headers: {
         'Accept': 'application/json',
@@ -65,7 +65,7 @@ export const passTurn = async (userid) => {
 
 export const getActiveUserSlot = () => {
   return new Promise((resolve, reject) => {
-    fetch('http://192.168.0.10:3030/room/list',
+    fetch('https://merchants-api.onrender.com/room/list',
       {  method: 'GET',
       headers: {
         'Accept': 'application/json',
@@ -83,7 +83,7 @@ export const getActiveUserSlot = () => {
 
 export const enterRoom = async () => {
   return new Promise((resolve, reject) => {
-    fetch('http://192.168.0.10:3030/room/enter',
+    fetch('https://merchants-api.onrender.com/room/enter',
       {  method: 'PUT',
       headers: {
         'Accept': 'application/json',
@@ -101,7 +101,7 @@ export const enterRoom = async () => {
 
 export const checkIfRoomLeader = async (userid) => {
   return new Promise((resolve, reject) => {
-    fetch('http://192.168.0.10:3030/room/list',
+    fetch('https://merchants-api.onrender.com/room/list',
       {  method: 'GET',
       headers: {
         'Accept': 'application/json',
@@ -118,7 +118,7 @@ export const checkIfRoomLeader = async (userid) => {
 
 export const setActivePlayer1 = async (userid) => {  
 
-  fetch('http://192.168.0.10:3030/room/update',
+  fetch('https://merchants-api.onrender.com/room/update',
     {  method: 'PUT',
     headers: {
       'Accept': 'application/json',
@@ -131,7 +131,7 @@ export const setActivePlayer1 = async (userid) => {
 
 export const checkIfGameStarted = async () => {
   return new Promise((resolve, reject) => {
-    fetch('http://192.168.0.10:3030/room/list',
+    fetch('https://merchants-api.onrender.com/room/list',
       {  method: 'GET',
       headers: {
         'Accept': 'application/json',
@@ -148,7 +148,7 @@ export const checkIfGameStarted = async () => {
 
 export const getActiveUserName = async () => {
   return new Promise((resolve, reject) => {
-    fetch('http://192.168.0.10:3030/room/list',
+    fetch('https://merchants-api.onrender.com/room/list',
       {  method: 'GET',
       headers: {
         'Accept': 'application/json',
@@ -165,7 +165,7 @@ export const getActiveUserName = async () => {
 
 export const getActiveUserId = async () => {  
   return new Promise((resolve, reject) => {
-    fetch('http://192.168.0.10:3030/room/list',
+    fetch('https://merchants-api.onrender.com/room/list',
       {  method: 'GET',
       headers: {
         'Accept': 'application/json',
@@ -183,7 +183,7 @@ export const getActiveUserId = async () => {
 export const sub1UserAction = async (userid) => {  
   console.log(userid)
   return new Promise((resolve, reject) => {
-     fetch('http://192.168.0.10:3030/user/subaction/'+ userid ,
+     fetch('https://merchants-api.onrender.com/user/subaction/'+ userid ,
       {  method: 'PUT',
       headers: {
         'Accept': 'application/json',
@@ -200,7 +200,7 @@ export const sub1UserAction = async (userid) => {
 
 export const setRoomOnline = async () => {  
 
-  fetch('http://192.168.0.10:3030/room/update',
+  fetch('https://merchants-api.onrender.com/room/update',
     {  method: 'PUT',
     headers: {
       'Accept': 'application/json',
@@ -213,7 +213,7 @@ export const setRoomOnline = async () => {
 
 export const setRoomOffline = async () => {  
 
-  fetch('http://192.168.0.10:3030/room/update',
+  fetch('https://merchants-api.onrender.com/room/update',
     {  method: 'PUT',
     headers: {
       'Accept': 'application/json',
@@ -226,7 +226,7 @@ export const setRoomOffline = async () => {
 
 export const getCompanyListDs = async (userid) => {
   return new Promise( (resolve, reject) => {
-    fetch('http://192.168.0.10:3030/company/listds/'+userid,
+    fetch('https://merchants-api.onrender.com/company/listds/'+userid,
     {  method: 'GET',
     headers: {
       'Accept': 'application/json',
@@ -243,7 +243,7 @@ export const getCompanyListDs = async (userid) => {
 
 export const getRoomData = async () => {
   return new Promise( (resolve, reject) => {
-    fetch('http://192.168.0.10:3030/room/list/',
+    fetch('https://merchants-api.onrender.com/room/list/',
     {  method: 'GET',
     headers: {
       'Accept': 'application/json',
@@ -262,7 +262,7 @@ export const getRoomData = async () => {
 
 export const setUserLocation = async (userid, location) => {
   return new Promise((resolve, reject) => {
-     fetch('http://192.168.0.10:3030/user/update/'+ userid,
+     fetch('https://merchants-api.onrender.com/user/update/'+ userid,
       {  method: 'PUT',
       headers: {
         'Accept': 'application/json',
@@ -277,7 +277,7 @@ export const setUserLocation = async (userid, location) => {
 
 export const getUserData = (userid) => {
   return new Promise((resolve, reject) => {
-    fetch('http://192.168.0.10:3030/user/read/'+userid,
+    fetch('https://merchants-api.onrender.com/user/read/'+userid,
     { 
       method: 'GET',
       headers: {
@@ -296,7 +296,7 @@ export const getUserData = (userid) => {
 export const checkIfUserExists = (userid) => {
   return new Promise ((resolve, reject) => {
   
-    fetch('https://192.168.0.10:9999/user/check/'+userid,
+    fetch('https://merchants-api.onrender.com/user/check/'+userid,
     { 
       method: 'GET',
       headers: {
@@ -318,7 +318,7 @@ export const checkIfUserExists = (userid) => {
 
 export const setLocations = () => {
   
-  fetch('http://192.168.0.10:3030/user/setlocations/',
+  fetch('https://merchants-api.onrender.com/user/setlocations/',
   { 
     method: 'PUT',
     headers: {
@@ -332,7 +332,7 @@ export const setLocations = () => {
 export const checkifUserIsInRoom = (userid) => {
   return new Promise ((resolve, reject) => {
   
-    fetch('http://192.168.0.10:3030/room/list',
+    fetch('https://merchants-api.onrender.com/room/list',
     { 
       method: 'GET',
       headers: {
@@ -375,7 +375,7 @@ export const checkifUserIsInRoom = (userid) => {
 
 export const getUserDiscoveredCount = (userid) => {
   return new Promise ((resolve,reject) => {
-    fetch('http://192.168.0.10:3030/user/read/'+userid,
+    fetch('https://merchants-api.onrender.com/user/read/'+userid,
     {
       method: 'GET',
       headers: {
@@ -428,7 +428,7 @@ export const getUserDiscoveredCount = (userid) => {
 
 export const wipeData = () => {
 
-  fetch('http://192.168.0.10:3030/company/wipe',
+  fetch('https://merchants-api.onrender.com/company/wipe',
   {
     method: 'DELETE',
     headers: {

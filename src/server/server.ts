@@ -14,8 +14,6 @@ var https = require('https');
 var privateKey  = fs.readFileSync('key.pem');
 var certificate = fs.readFileSync('cert.pem');
 
-
-
 var credentials = {key: privateKey, cert: certificate};
 var express = require('express');
 
@@ -35,33 +33,6 @@ app.get('/hcheck' , (req,res)=>{
   console.log('ximbinha')
   res.sendStatus(200)
 })
-
-app.get('/' , (req,res)=>{
-  console.log('ximbinho')
-  res.sendStatus(200)
-})
-
-app.get('/teste' , (req,res)=>{
-  console.log('maneiro')
-  res.status(200).send('xablinho')
-})
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 const WebSocket =  require("ws")
 
