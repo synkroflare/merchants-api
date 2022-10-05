@@ -23,7 +23,7 @@ const Lobby = () =>{
     const [user7Id,setuser7Id] = useState()
     const [user8Id,setuser8Id] = useState()
 
-    let socket = new WebSocket("ws://merchants-api.onrender.com:8082");
+    let socket = new WebSocket("wss://merchants-api.onrender.com:8082");
     
 
    

@@ -9,7 +9,7 @@ import { getUserActions, passTurn, sub1UserAction } from './local/functions';
 
 const BlueprintSearch = () =>{    
 
-    const socket = new WebSocket("ws://merchants-api.onrender.com:8082")
+    const socket = new WebSocket("wss://merchants-api.onrender.com:8082")
 
     socket.onopen = () => {
         console.log('open')        

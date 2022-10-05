@@ -34,7 +34,7 @@ app.get('/hcheck' , (req,res)=>{
   res.sendStatus(200)
 })
 
-const WebSocket =  require("ws")
+const WebSocket =  require("wss")
 
 const wss = new WebSocket.Server({ port:8082})
 
@@ -42,12 +42,12 @@ wss.broadcast = function(data) {
   wss.clients.forEach(client => client.send(data));
 };
 
-wss.on("connection", ws => {
+wss.on("connection", wss => {
 
-   ws.on("close", ws => {
+   wss.on("close", wss => {
     })
 
-    ws.on("message", message => {
+    wss.on("message", message => {
 
     var data
       

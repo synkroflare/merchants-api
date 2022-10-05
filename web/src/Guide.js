@@ -5,7 +5,7 @@ import './App.css';
 const Guide = () =>{    
     const navigate = useNavigate(); 
     
-    const socket = new WebSocket("ws://merchants-api.onrender.com:8082")
+    const socket = new WebSocket("wss://merchants-api.onrender.com:8082")
 
     socket.onopen = () => {
         socket.send('test')
