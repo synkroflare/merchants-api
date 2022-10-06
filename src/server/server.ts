@@ -28,7 +28,7 @@ const port1 = 10000
 const port2 = 9999
 
 const ws =  require('ws');
-const wss = new ws.Server({port: 8082});
+const wss = new ws.Server({port: 10000});
 
 httpServer.listen(port1 , '0.0.0.0', ()  =>  {
   console.log('http online on port '+port1)
