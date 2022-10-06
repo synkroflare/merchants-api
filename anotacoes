@@ -1,12 +1,9 @@
-problemas com o funcionamento do app na nuvem:
+a fazer
 
-
-- pre game nao funciona 
-- nao esta setando a sessionstorageitem pra location e color
-- websocket nao funciona === isso causa mtos erros
-- createcompany nao ta indo [pelo menos o que rola qnd é criada a sala] [no tclient funciona show]
-
-LENTIDAO EXTREMA:
-
-- remover os fetchs infinitos e substituir por wss
-- converter as imagens pra tipagens mais leves
+- estudar implementacao do wss: https://javascript.info/websocket
+--------- a websocket esta funcionando localmente.
+--------- 
+- continuar a troca das imagens pngs poe webps
+- estudar a implementacao da api no amazon webservices
+- refatorar os fetch infinitos para funcoes wss
+- criar loading states

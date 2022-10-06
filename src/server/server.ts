@@ -13,20 +13,22 @@ import { WebSocketServer } from 'ws';
 
 const languageProvider = new I18NextLanguageProvider()
 
-var fs = require('fs');
-var http = require('http');
-var https = require('https');
-var privateKey  = fs.readFileSync('key.pem');
-var certificate = fs.readFileSync('cert.pem');
+const fs = require('fs');
+const http = require('http');
+const https = require('https');
+const privateKey  = fs.readFileSync('key.pem');
+const certificate = fs.readFileSync('cert.pem');
 
-var credentials = {key: privateKey, cert: certificate};
-var express = require('express');
+const credentials = {key: privateKey, cert: certificate};
 
-var httpServer = http.createServer(app);
-var httpsServer = https.createServer(credentials, app);
+const httpServer = http.createServer(app);
+const httpsServer = https.createServer(credentials, app);
 
 const port1 = 80
 const port2 = 9999
+
+const ws =  require('ws');
+const wss = new ws.Server({port: 8082});
 
 httpServer.listen(port1 , '0.0.0.0', ()  =>  {
   console.log('http online on port '+port1)
@@ -42,17 +44,13 @@ app.get('/' , (req,res)=>{
   res.sendStatus(200)
 })
 
-const server = createServer({
-  cert: readFileSync('./cert.pem'),
-  key: readFileSync('./key.pem')
-});
-const wss = new WebSocketServer({ server })
+
 
 //wss.broadcast = function(data) {
  // wss.clients.forEach(client => client.send(data));
 //};
 
-server.listen(8082);
+
 
 wss.on("connection", wss => {
   console.log('user connected')
@@ -61,6 +59,7 @@ wss.on("connection", wss => {
     })
 
     wss.on("message", message => {
+      console.log("receiving message from websocket-client")
 
     var data
       

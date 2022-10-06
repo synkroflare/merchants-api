@@ -23,10 +23,7 @@ const Lobby = () =>{
     const [user7Id,setuser7Id] = useState()
     const [user8Id,setuser8Id] = useState()
 
-    let socket = new WebSocket("wss://192.168.0.10:8082/");
-    //+process.env[API_URL]
-
-   
+    let socket = new WebSocket("ws://localhost:8082");
 
     let player1Name = 'vaga 1'
     let player2Name = 'vaga 2'
@@ -52,8 +49,6 @@ const Lobby = () =>{
     const handleClose = () => {
       setShow(false)
     }
-    
-    
     
     useEffect(() =>  {      
 
@@ -153,7 +148,7 @@ const Lobby = () =>{
           document.querySelector('#slot8').innerHTML = 'vaga 8'
           document.querySelector('#slotbox8').style.backgroundColor = 'rgb(0,0,0,0.5)'
         }        
-      }, 2000);
+      }, 5000);
     
       return () => clearInterval(interval); // This represents the unmount function, in which you need to clear your interval to prevent memory leaks.
     }, [])
