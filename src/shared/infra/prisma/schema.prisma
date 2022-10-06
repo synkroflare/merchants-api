@@ -3,8 +3,8 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = "postgres://root:3TmqXHb4lVvdbiErZpyvpLBZufRyNS8G@dpg-ccue9raen0hklj3m8jkg-a.ohio-postgres.render.com/merchant_system"
+  provider = "postgres"
+  url      = "postgres://wayto:videoboy66@merchantdatabase.csltpv1zn6uw.sa-east-1.rds.amazonaws.com"
 }
 
 model company {

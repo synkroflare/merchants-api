@@ -5,7 +5,12 @@ import { I18NextLanguageProvider } from '../shared/providers/LanguageProvider/im
 import { app } from '../shared/infra/http/httpServer'
 import { Request, Response } from 'express'
 
-const httpPort = process.env.EXPRESS_PORT
+import { createServer } from 'https';
+import { readFileSync } from 'fs';
+import { WebSocketServer } from 'ws';
+
+
+
 const languageProvider = new I18NextLanguageProvider()
 
 var fs = require('fs');
@@ -20,29 +25,37 @@ var express = require('express');
 var httpServer = http.createServer(app);
 var httpsServer = https.createServer(credentials, app);
 
-httpServer.listen(10000 , '0.0.0.0', ()  =>  {
-  console.log('http online')
+const port1 = 80
+const port2 = 9999
+
+httpServer.listen(port1 , '0.0.0.0', ()  =>  {
+  console.log('http online on port '+port1)
     
 })  
 
-httpsServer.listen(9999 , '0.0.0.0', ()  =>  {
-  console.log('https online')
+httpsServer.listen(port2 , '0.0.0.0', ()  =>  {
+  console.log('https online on port '+port2)
 })
 
-app.get('/hcheck' , (req,res)=>{
-  console.log('ximbinha')
+app.get('/' , (req,res)=>{
+  console.log('health checked')
   res.sendStatus(200)
 })
 
-const WebSocket =  require("wss")
+const server = createServer({
+  cert: readFileSync('./cert.pem'),
+  key: readFileSync('./key.pem')
+});
+const wss = new WebSocketServer({ server })
 
-const wss = new WebSocket.Server({ port:8082})
+//wss.broadcast = function(data) {
+ // wss.clients.forEach(client => client.send(data));
+//};
 
-wss.broadcast = function(data) {
-  wss.clients.forEach(client => client.send(data));
-};
+server.listen(8082);
 
 wss.on("connection", wss => {
+  console.log('user connected')
 
    wss.on("close", wss => {
     })
@@ -51,19 +64,19 @@ wss.on("connection", wss => {
 
     var data
       
-      try{data = JSON.parse(message)}
+      try{data = JSON.parse(message.toString())}
         catch(e) {data = 'jsonparse-failed'}
       
       if (data.type == 'newBlueprintDiscoveredNotification') {
-        wss.broadcast(JSON.stringify({
-          type: 'newBlueprintDiscoveredNotification',
-          message: data.message,
-          color: data.color
-      }))
+       //   wss.broadcast(JSON.stringify({
+       //   type: 'newBlueprintDiscoveredNotification',
+       //   message: data.message,
+       //   color: data.color
+      //}))
       }
 
       if (message.toString() == 'cm=lobby:update user locations') {
-        wss.broadcast('sm=lobby:update user locations')
+       // wss.broadcast('sm=lobby:update user locations')
       }
       
 

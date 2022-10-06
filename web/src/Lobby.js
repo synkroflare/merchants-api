@@ -8,7 +8,7 @@ import { checkIfGameStarted, checkIfRoomLeader, setRoomOnline, setLocations, get
 const Lobby = () =>{    
     
     
-    const [code, setCode] = useState(1)
+    const userid = sessionStorage.getItem('userid')
     const [roomId, setRoomId] = useState()
     const [userName, setUserName] = useState(0)
     const [show,setShow] = useState(false)
@@ -23,8 +23,8 @@ const Lobby = () =>{
     const [user7Id,setuser7Id] = useState()
     const [user8Id,setuser8Id] = useState()
 
-    let socket = new WebSocket("wss://merchants-api.onrender.com:8082");
-    
+    let socket = new WebSocket("wss://192.168.0.10:8082/");
+    //+process.env[API_URL]
 
    
 
@@ -58,28 +58,6 @@ const Lobby = () =>{
     useEffect(() =>  {      
 
       const interval = setInterval(() => {
-        
-        const checkRoomLeader = checkIfRoomLeader(sessionStorage.getItem("userid"))
-        checkRoomLeader.then(value => {
-          if (value === 0) {
-            document.querySelector('#startbtn').disabled = false
-            document.querySelector('#settingsbtn').disabled = false
-          }
-          if (value !== 0) {
-            document.querySelector('#startbtn').disabled = true
-            document.querySelector('#settingsbtn').disabled = true
-          }
-           
-        }
-        )
-
-        const checkIfGameStartedC = checkIfGameStarted()
-        checkIfGameStartedC.then(value => {
-          if (value == true) {
-            navigate('/pregame')
-          }
-        }
-        )
      
         fetch('https://merchants-api.onrender.com/room/list',
         {                
@@ -108,7 +86,22 @@ const Lobby = () =>{
           player5Name = data[0].slot5Name
           player6Name = data[0].slot6Name
           player7Name = data[0].slot7Name
-          player8Name = data[0].slot8Name                      
+          player8Name = data[0].slot8Name 
+
+          const value = data[0].slot1Id - userid
+
+          if (value === 0) {
+            document.querySelector('#startbtn').disabled = false
+            document.querySelector('#settingsbtn').disabled = false
+          }
+          if (value !== 0) {
+            document.querySelector('#startbtn').disabled = true
+            document.querySelector('#settingsbtn').disabled = true
+          }
+          
+          if (data[0].status == true) {
+            navigate('/pregame')
+          }
         })
 
         document.querySelector('#slot1').innerHTML = player1Name
@@ -160,7 +153,7 @@ const Lobby = () =>{
           document.querySelector('#slot8').innerHTML = 'vaga 8'
           document.querySelector('#slotbox8').style.backgroundColor = 'rgb(0,0,0,0.5)'
         }        
-      }, 100);
+      }, 2000);
     
       return () => clearInterval(interval); // This represents the unmount function, in which you need to clear your interval to prevent memory leaks.
     }, [])
