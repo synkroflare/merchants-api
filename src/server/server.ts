@@ -24,7 +24,7 @@ const credentials = {key: privateKey, cert: certificate};
 const httpServer = http.createServer(app);
 const httpsServer = https.createServer(credentials, app);
 
-const port1 = 80
+const port1 = 10000
 const port2 = 9999
 
 const ws =  require('ws');
@@ -39,7 +39,7 @@ httpsServer.listen(port2 , '0.0.0.0', ()  =>  {
   console.log('https online on port '+port2)
 })
 
-app.get('/' , (req,res)=>{
+app.get('/hcheck' , (req,res)=>{
   console.log('health checked')
   res.sendStatus(200)
 })
