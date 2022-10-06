@@ -16,7 +16,7 @@ export let currentUserId = 0
 
 const CreateUser = () =>{  
   
-    const socket = new WebSocket("wss://localhost:10000")
+    const socket = new WebSocket("wss://merchants-front.onrender.com:10000")
 
     socket.onopen = () => {
       console.log('socket1 open')
@@ -25,7 +25,7 @@ const CreateUser = () =>{
 
     socket.onmessage = () => {
       console.log('received message from server')
-      
+
     }
     
  
