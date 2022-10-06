@@ -27,6 +27,30 @@
   color: rgb(255, 255, 255);
 }
 
+.avatar-circle{
+  width: 40vw;
+  height: 40vw;
+  border-radius: 50%;
+  border-style: solid;
+  border-width: 3px;
+  border-color: black;
+  display: flex;
+  overflow: hidden;
+  
+}
+
+.lobby-avatar1{
+  background-image: url("../public/avatars/m6.png") !important;
+  background-size:cover;
+  width: 37vw !important;
+}
+
+.lobby-avatar2{
+  background-image: url("../public/avatars/m1.png") !important;
+  background-size:cover;
+  width: 37vw !important;
+}
+
 .game-icon {
   background-color: #886262;
   width: 20vw;
@@ -232,6 +256,10 @@
   background-color: indigo;
 }
 
+.indigobg2{
+  background-color: rgba(76, 0, 130, 0.411);
+}
+
 .firebrickbg{
   background-color: firebrick;
 }
@@ -362,6 +390,31 @@
 
 }
 
+.gendericon{
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.namebox{
+  width: 40vw;
+  height: 7vw;
+}
+
+.psides-5{
+  padding-left: 13vw;
+  padding-right: 13vw;
+}
+.genderbtn{
+  background-color: #00000000;
+  border-style: none;
+  height: 16vw;
+}
+
+
+.height1 {
+
+height: 16vw !important;
+}
 .materialIcon{
   width: calc( 25vw) !important;
   height: calc( 25vw) !important;
@@ -451,7 +504,7 @@
 .lobbybox{
   width: 37vw !important;
   height: 17vw !important;
-  background-color: #0000008a;
+  background-color: #00000046;
 }
 
 .lobbybox2{

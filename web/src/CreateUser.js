@@ -14,7 +14,19 @@ export let currentUserId = 0
 
 
 
-const CreateUser = () =>{    
+const CreateUser = () =>{  
+  
+    const socket = new WebSocket("wss://localhost:10000")
+
+    socket.onopen = () => {
+      console.log('socket1 open')
+      socket.send('message1')
+    }
+
+    socket.onmessage = () => {
+      console.log('received message from server')
+      
+    }
     
  
     const [code, setCode] = useState(3)
@@ -38,7 +50,7 @@ const CreateUser = () =>{
       text.innerHTML = text.innerText
       .split("")
       .map(
-      (char, i) => `<span style="transform:rotate(${i * 6.5}deg)">${char}</span>`
+      (char, i) => `<span style="transform:rotate(${i * 5.8}deg)">${char}</span>`
       )
       .join("");  
     }
@@ -64,7 +76,7 @@ const CreateUser = () =>{
 
     function limit()
 {
-    var max_chars = 21;
+    var max_chars = 16;
     var element = document.querySelector('#namebox')
 
     if(element.value.length > max_chars) {
@@ -102,8 +114,9 @@ const CreateUser = () =>{
     }
 
   return (
-    <div className='App fade-in-fwd'>          
+    <div className='App fade-in-fwd'>           
     <header className='App-header'>
+    
     <div className="container text-center p-10 App-newbox" >
     <div className="container text-center " >
             <div className="row g-0 text-center">
@@ -114,7 +127,7 @@ const CreateUser = () =>{
                     <img src={"./logo512.png"} className='App-logo ' alt='logo' />
                     <div className="text" id='circletext'>
                         <p>
-                        - Navegar - Construir - Produzir 
+                        - MERCHANTS - MERCHANTS - MERCHANTS
                         </p>
                     </div>
                 </div>
@@ -146,19 +159,40 @@ const CreateUser = () =>{
         <Modal.Body>      
         <div className='row '>
             <div className='col center'>
-            <h1 className='App-title useMyFont white'>insira um nome de usuario</h1>        
+             
+            <h1 className='App-title useMyFont white darkbg '>Nome</h1>        
         
             <form>       
-              <div className='row mt-2 mb-3'>
+              <div className='row mt-2 mb-2'>
               <label>       
-              <input type="text" name="name" id ='namebox' onKeyDown={(e) => {limit(this)}} onKeyUp={(e) => {limit(this)}} onChange={(e) => { updateInput(e, 'userName');  }}/>
+              <input type="text" className='namebox useMyFont h2 text-center' name="name" id ='namebox' onKeyDown={(e) => {limit(this)}} onKeyUp={(e) => {limit(this)}} onChange={(e) => { updateInput(e, 'userName');  }}/>
               </label>
               </div>     
-            </form>  
+            </form> 
+
+            <h1 className='App-title useMyFont white darkbg'>genero</h1>
+
+            <div className='row m-0 height1 psides-5'>
+              <div className='col height1 ps-4'>
+                <button className='genderbtn'>
+                <img className=' gendericon' src={'/ui/male.png'} alt='male' />
+                </button>
+            
+              </div>
+              
+              <div className='col height1 pe-4'>
+              <button className='genderbtn'>
+                <img className=' gendericon' src={'/ui/female.png'} alt='female' />
+                </button>
+              </div>
+             
+            
+              
+              </div>
             </div>
         </div> 
 
-        <div className='row  mt-2'>
+        <div className='row  darkbg mt-2'>
             <div className='col center'>
                 <button className='btn ui-btn' onClick={(e)=>{enterButtonFunction()}}>
                   <h4 className='useMyFont white'>entrar</h4> 

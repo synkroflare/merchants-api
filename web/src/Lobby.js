@@ -251,11 +251,13 @@ const Lobby = () =>{
 
         <div className='row mt-2'>
           <div className='col '>
+          <div className=' lobby-avatar1'>
             <div className='lobbybox container ' id='slotbox1'>
               <div className=' vertical-center'>
                <span className='text-center' id='slot1'>vaga 1</span>
               </div>           
             </div>
+            
 
             <div className='lobbybox2 container ' id='countrybox1'>
               <div className=' vertical-center'>
@@ -263,7 +265,10 @@ const Lobby = () =>{
               </div>           
             </div>
           </div>
+          </div>
+
           <div className='col'>
+          <div className=' lobby-avatar2'>
             <div className='lobbybox container' id='slotbox2'>
               <div className=' vertical-center'>
                <span className='text-center ' id='slot2'>vaga 2</span>
@@ -276,6 +281,7 @@ const Lobby = () =>{
               </div>           
             </div>
           </div>         
+        </div>
         </div>
 
         <div className='row mt-2'>

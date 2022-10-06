@@ -29,7 +29,7 @@ const GameHome = () =>{
     useEffect(() =>  {
         
         const userColor = sessionStorage.getItem('usercolor')
-        document.querySelector('#logo').src = './logos/logo-'+ userColor +'.png' 
+       // document.querySelector('#logo').src = './logos/logo-'+ userColor +'.png' 
 
         const text = document.querySelector(".text");
             text.innerHTML = text.innerText
@@ -145,10 +145,12 @@ const GameHome = () =>{
                
                 <div className="col center puff-in-center">
                  <div className="circle1 m-0">
-                    <img src={""} className='App-logo ' id ='logo' alt='logo' />
+                    <div className='avatar-circle justify-content-center d-flex'>
+                    <img src={"/avatars/f3.png"} className='App-logo ' id ='logo' alt='logo' />
+                    </div>
                     <div className="text">
                         <p>
-                        - Navegar - Construir - Produzir 
+                        - Navegar - Construir - Produzir  
                         </p>
                     </div>
                 </div>

@@ -28,22 +28,20 @@ const port1 = 10000
 const port2 = 9999
 
 const ws =  require('ws');
-const wss = new ws.Server({port: 10000});
+const wss = new ws.Server({server: httpsServer});
 
-httpServer.listen(port1 , '0.0.0.0', ()  =>  {
-  console.log('http online on port '+port1)
-    
-})  
+//httpServer.listen(port1 , '0.0.0.0', ()  =>  {
+//  console.log('http online on port '+port1)    
+//})  
 
-httpsServer.listen(port2 , '0.0.0.0', ()  =>  {
-  console.log('https online on port '+port2)
+httpsServer.listen(port1 , '0.0.0.0', ()  =>  {
+  console.log('https online on port '+port1)
 })
 
 app.get('/hcheck' , (req,res)=>{
   console.log('health checked')
   res.sendStatus(200)
 })
-
 
 
 //wss.broadcast = function(data) {
@@ -60,6 +58,7 @@ wss.on("connection", wss => {
 
     wss.on("message", message => {
       console.log("receiving message from websocket-client")
+      wss.send('hello client, i am server')
 
     var data
       
