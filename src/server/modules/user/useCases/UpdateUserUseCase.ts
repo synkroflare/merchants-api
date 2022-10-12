@@ -11,7 +11,7 @@ export class UpdateUserUseCase {
     private userRepository: IUserRepository,
   ) {}
 
-  async execute({  location, actions, userId, name, roomId,
+  async execute({  gender, avatar,location, actions, userId, name, roomId,
     BPD1,
     BPD2,
     BPD3,
@@ -42,7 +42,7 @@ export class UpdateUserUseCase {
    BPD28,
    BPD29,
    BPD30 }: TUpdateUserData): Promise<IUser | null> {
-    return this.userRepository.update({ location, actions, userId, name, roomId,
+    return this.userRepository.update({ gender, avatar,location, actions, userId, name, roomId,
       BPD1,
       BPD2,
       BPD3,

@@ -1,7 +1,8 @@
 import { IUser } from '../models/IUser'
 
 export type TCreateUserData = {
-  
+  gender: string
+  avatar?: string
   name: string
   roomId: number
   userId: number
@@ -17,6 +18,8 @@ type TFindById = {
 }
 
 export type TUpdateUserData = {
+  gender: string
+  avatar: string
   actions: number
   roomId: number
   name: string

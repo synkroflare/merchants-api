@@ -317,16 +317,24 @@ export const checkIfUserExists = (userid) => {
 
 
 export const setLocations = () => {
+  return new Promise((resolve,reject)=> {
+    fetch('https://merchants-api.onrender.com/user/setlocations/',
+    { 
+      method: 'PUT',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }                
+    }         
+    )
+    .then(response => response.json())
+    .then(function(data){
+      resolve(data)
+    })
+   
+  })
   
-  fetch('https://merchants-api.onrender.com/user/setlocations/',
-  { 
-    method: 'PUT',
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    }                
-  }         
-  )     
+    
 }
 
 export const checkifUserIsInRoom = (userid) => {
@@ -358,7 +366,7 @@ export const checkifUserIsInRoom = (userid) => {
   }
 
 
-  export const createUser = (userid, username) => {
+  export const createUser = (userid, username, gender) => {
 
     fetch('https://merchants-api.onrender.com/user',
     {
@@ -367,7 +375,7 @@ export const checkifUserIsInRoom = (userid) => {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },                   
-      body: JSON.stringify({userId: Number(userid), roomId: 0, name: username})                
+      body: JSON.stringify({userId: Number(userid), roomId: 0, name: username, gender: gender})                
     }         
     )  
     

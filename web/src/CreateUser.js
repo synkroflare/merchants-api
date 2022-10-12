@@ -16,23 +16,23 @@ export let currentUserId = 0
 
 const CreateUser = () =>{  
   
-    const socket = new WebSocket("wss://merchants-front.onrender.com:10000")
-
+    const socket = new WebSocket("wss://exaecwjnc9.execute-api.sa-east-1.amazonaws.com/production")
+    const testname = 'amarildo'
+    const testb = 'carpintaria'
     socket.onopen = () => {
-      console.log('socket1 open')
-      socket.send('message1')
+      console.log('socket1 open')      
     }
 
-    socket.onmessage = () => {
-      console.log('received message from server')
-
-    }
-    
+    socket.onmessage = (event) => {     
+      const data0 = JSON.parse(event.data)      
+      const data = JSON.parse(data0.body)
+    }    
  
     const [code, setCode] = useState(3)
     const [roomId, setRoomId] = useState()
     const [userName, setUserName] = useState(0)
     const [show, setShow] = useState(false)
+    const [gender, setgender] = useState('male')
 
     const [userId, setUserId] = useState((Math.floor(Math.random() * 999999999)))
 
@@ -43,6 +43,21 @@ const CreateUser = () =>{
     const handleClose = () => {
       document.querySelector('#errorContainer').classList.add('d-none')
       setShow(false)
+    }
+
+    const handleGenderSelection = () => {
+      switch (gender) {
+        case 'male':
+          setgender('female')
+          document.querySelector('#maleicon').classList.remove('myGlower-circle')
+          document.querySelector('#femaleicon').classList.add('myGlower-circle')
+          break;
+        case 'female':
+        setgender('male')
+        document.querySelector('#maleicon').classList.add('myGlower-circle')
+        document.querySelector('#femaleicon').classList.remove('myGlower-circle')
+          break;
+    }
     }
 
     useEffect(()=> {
@@ -63,14 +78,12 @@ const CreateUser = () =>{
       if (code === true) {navigate('../home')}  
 
       if (!sessionStorage.getItem("userid")) {
-        console.log('seting new ckie')
        
         sessionStorage.setItem("userid", userId)
       }
 
       if (sessionStorage.getItem("userid")) {
         setUserId(sessionStorage.getItem("userid"))
-        console.log('userid setted to ='+sessionStorage.getItem("userid"))
       }
     }, [code]) 
 
@@ -101,8 +114,7 @@ const CreateUser = () =>{
   
     const enterButtonFunction = async () => {
       if (sessionStorage.getItem('userid') && userName !== 0) {
-        console.log(userName+' - '+sessionStorage.getItem('userid'))
-        createUser(sessionStorage.getItem('userid'), userName)
+        createUser(sessionStorage.getItem('userid'), userName, gender)
         sessionStorage.setItem('username',userName)
         navigate('../home')
       }  
@@ -158,31 +170,29 @@ const CreateUser = () =>{
         
         <Modal.Body>      
         <div className='row '>
-            <div className='col center'>
-             
-            <h1 className='App-title useMyFont white darkbg '>Nome</h1>        
+            <div className='col center'>        
         
             <form>       
               <div className='row mt-2 mb-2'>
               <label>       
-              <input type="text" className='namebox useMyFont h2 text-center' name="name" id ='namebox' onKeyDown={(e) => {limit(this)}} onKeyUp={(e) => {limit(this)}} onChange={(e) => { updateInput(e, 'userName');  }}/>
+              <input type="text" placeholder='nome' className='namebox useMyFont h2 text-center mb-0' name="name" id ='namebox' onKeyDown={(e) => {limit(this)}} onKeyUp={(e) => {limit(this)}} onChange={(e) => { updateInput(e, 'userName');  }}/>
               </label>
               </div>     
             </form> 
 
-            <h1 className='App-title useMyFont white darkbg'>genero</h1>
+            <h1 className='App-title useMyFont white '>genero</h1>
 
             <div className='row m-0 height1 psides-5'>
               <div className='col height1 ps-4'>
-                <button className='genderbtn'>
-                <img className=' gendericon' src={'/ui/male.png'} alt='male' />
+                <button className='genderbtn' onClick={()=>handleGenderSelection()}>
+                <img className=' gendericon myGlower-circle' id='maleicon' src={'/ui/male.png'} alt='male' />
                 </button>
             
               </div>
               
               <div className='col height1 pe-4'>
-              <button className='genderbtn'>
-                <img className=' gendericon' src={'/ui/female.png'} alt='female' />
+              <button className='genderbtn' onClick={()=>handleGenderSelection()}>
+                <img className=' gendericon' id='femaleicon' src={'/ui/female.png'} alt='female' />
                 </button>
               </div>
              

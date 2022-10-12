@@ -4,7 +4,8 @@ generator client {
 
 datasource db {
   provider = "postgres"
-  url      = "postgres://wayto:videoboy66@merchantdatabase.csltpv1zn6uw.sa-east-1.rds.amazonaws.com"
+  //url      = "postgres://wayto:videoboy66@merchantdatabase.csltpv1zn6uw.sa-east-1.rds.amazonaws.com"
+  url = "postgres://root:3TmqXHb4lVvdbiErZpyvpLBZufRyNS8G@dpg-ccue9raen0hklj3m8jkg-a.ohio-postgres.render.com/merchant_system"
 }
 
 model company {
@@ -64,6 +65,8 @@ model user {
   roomId       Int 
   color        String      @default("none")
   location     String      @default("default")
+  avatar       String      @default("default")
+  gender       String      @default("male")
   actions      Int         @default(2)
   BPD1        Boolean      @default(false)
   BPD2        Boolean      @default(false)

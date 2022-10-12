@@ -12,10 +12,10 @@ export class CreateUserUseCase {
     ) {}
 
 
-    async execute({name, roomId, userId}: TCreateUserData): Promise<IUser> {
+    async execute({name, roomId, userId, gender, avatar}: TCreateUserData): Promise<IUser> {
         
         const user = await this.userRepository.create({
-            name, roomId, userId
+            name, roomId, userId, gender, avatar
     })
 
     return user

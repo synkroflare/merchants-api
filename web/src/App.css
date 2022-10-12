@@ -35,18 +35,38 @@
   border-width: 3px;
   border-color: black;
   display: flex;
-  overflow: hidden;
-  
+  overflow: hidden;  
+}
+
+.notification-avatar-circle{
+  width: 20vw;
+  height: 20vw;
+  border-radius: 50%;
+  border-style: solid;
+  border-width: 3px;
+  border-color: black;
+  display: flex;
+  overflow: hidden;  
 }
 
 .lobby-avatar1{
-  background-image: url("../public/avatars/m6.png") !important;
+  background-image: url("../public/avatars/f3.png") !important;
+  background-size:cover;
+  width: 37vw !important;
+}
+
+.p-absolute{
+  position:absolute
+}
+
+.lobby-avatar{
+  
   background-size:cover;
   width: 37vw !important;
 }
 
 .lobby-avatar2{
-  background-image: url("../public/avatars/m1.png") !important;
+  background-image: url("../public/avatars/m7.png") !important;
   background-size:cover;
   width: 37vw !important;
 }
@@ -264,6 +284,12 @@
   background-color: firebrick;
 }
 
+
+
+.deeppinkbg{
+  background-color: deeppink;
+}
+
 .ui-btn2{
   background-image: url("../public/ui/btn2.png") !important;
   background-repeat: round;
@@ -396,7 +422,7 @@
 }
 
 .namebox{
-  width: 40vw;
+  width: 60vw;
   height: 7vw;
 }
 
@@ -502,13 +528,15 @@ height: 16vw !important;
 }
 
 .lobbybox{
-  width: 37vw !important;
+
+  margin: 0 !important;
+  width: 100% !important;
   height: 17vw !important;
   background-color: #00000046;
 }
 
 .lobbybox2{
-  width: 37vw !important;
+  width: 100%  !important;
   height: 13vw !important;
   background-color: #0000008a;
 }
@@ -540,6 +568,15 @@ newSpanBlue {
 }
 
 @keyframes glow {
+  to {
+       border-color: #41b2d4;
+  -webkit-box-shadow: 0 0 5px #69c800;
+     -moz-box-shadow: 0 0 5px #69c800;
+          box-shadow: 0 0 5px #69c800;
+  }
+}
+
+@keyframes glow-circle {
   to {
        border-color: #41b2d4;
   -webkit-box-shadow: 0 0 5px #69c800;
@@ -587,6 +624,16 @@ newSpanBlue {
 .myGlower-white2 {
   border: 2px solid transparent;
   animation: glow-white2 2.0s infinite alternate;  
+   -webkit-transition: border 1.0s linear, box-shadow 1.0s linear;
+     -moz-transition: border 1.0s linear, box-shadow 1.0s linear;
+          transition: border 1.0s linear, box-shadow 1.0s linear;
+  
+}
+
+.myGlower-circle {
+  border: 2px solid transparent;
+  border-radius: 50%;
+  animation: glow-circle 0.6s infinite alternate;  
    -webkit-transition: border 1.0s linear, box-shadow 1.0s linear;
      -moz-transition: border 1.0s linear, box-shadow 1.0s linear;
           transition: border 1.0s linear, box-shadow 1.0s linear;
@@ -1224,3 +1271,28 @@ body {
 }
 
 
+.scale-up-center {
+	-webkit-animation: scale-up-center 5s cubic-bezier(.38,-0.1,.83,.67) both;
+	        animation: scale-up-center 5s cubic-bezier(.38,-0.1,.83,.67) both;
+}
+
+ @-webkit-keyframes scale-up-center {
+  0% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  100% {
+    -webkit-transform: scale(1.5);
+            transform: scale(1.5);
+  }
+}
+@keyframes scale-up-center {
+  0% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  100% {
+    -webkit-transform: scale(1.5);
+            transform: scale(1.5);
+  }
+}

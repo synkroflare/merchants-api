@@ -1,11 +1,13 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import {useState} from 'react';
 import {  useNavigate } from 'react-router-dom';
 import {Modal, Button} from 'react-bootstrap'
 import './App.css';
 import { checkIfGameStarted, checkIfRoomLeader, setRoomOnline, setLocations, getUserData } from './local/functions';
 
-const Lobby = () =>{    
+const Lobby = () =>{ 
+  
+    let wsOpen = true
     
     
     const userid = sessionStorage.getItem('userid')
@@ -23,7 +25,16 @@ const Lobby = () =>{
     const [user7Id,setuser7Id] = useState()
     const [user8Id,setuser8Id] = useState()
 
-    let socket = new WebSocket("ws://localhost:8082");
+    
+    const socket = useRef('undefined')
+
+    if (socket.current === 'undefined') {      
+      socket.current = new WebSocket("wss://exaecwjnc9.execute-api.sa-east-1.amazonaws.com/production")      
+    }
+
+    socket.current.onopen = () => {
+      console.log('connected to ws')
+    }
 
     let player1Name = 'vaga 1'
     let player2Name = 'vaga 2'
@@ -50,9 +61,9 @@ const Lobby = () =>{
       setShow(false)
     }
     
-    useEffect(() =>  {      
+    useEffect(() =>  { 
 
-      const interval = setInterval(() => {
+      console.log(socket)
      
         fetch('https://merchants-api.onrender.com/room/list',
         {                
@@ -72,16 +83,18 @@ const Lobby = () =>{
           setuser5Id(data[0].slot5Id)
           setuser6Id(data[0].slot6Id)
           setuser7Id(data[0].slot7Id)
-          setuser8Id(data[0].slot8Id)
+          setuser8Id(data[0].slot8Id)          
 
-          player1Name = data[0].slot1Name
-          player2Name = data[0].slot2Name
-          player3Name = data[0].slot3Name
-          player4Name = data[0].slot4Name 
-          player5Name = data[0].slot5Name
-          player6Name = data[0].slot6Name
-          player7Name = data[0].slot7Name
-          player8Name = data[0].slot8Name 
+          if (data[0].slot1Name !== "default_blank_name") document.querySelector('#slot1').innerHTML = data[0].slot1Name
+          if (data[0].slot2Name !== "default_blank_name") document.querySelector('#slot2').innerHTML = data[0].slot2Name
+          if (data[0].slot3Name !== "default_blank_name") document.querySelector('#slot3').innerHTML = data[0].slot3Name
+          if (data[0].slot4Name !== "default_blank_name") document.querySelector('#slot4').innerHTML = data[0].slot4Name
+          if (data[0].slot5Name !== "default_blank_name") document.querySelector('#slot5').innerHTML = data[0].slot5Name
+          if (data[0].slot6Name !== "default_blank_name") document.querySelector('#slot6').innerHTML = data[0].slot6Name
+          if (data[0].slot7Name !== "default_blank_name") document.querySelector('#slot7').innerHTML = data[0].slot7Name
+          if (data[0].slot8Name !== "default_blank_name") document.querySelector('#slot8').innerHTML = data[0].slot8Name
+
+          
 
           const value = data[0].slot1Id - userid
 
@@ -98,15 +111,8 @@ const Lobby = () =>{
             navigate('/pregame')
           }
         })
-
-        document.querySelector('#slot1').innerHTML = player1Name
-        document.querySelector('#slot2').innerHTML = player2Name
-        document.querySelector('#slot3').innerHTML = player3Name
-        document.querySelector('#slot4').innerHTML = player4Name
-        document.querySelector('#slot5').innerHTML = player5Name
-        document.querySelector('#slot6').innerHTML = player6Name
-        document.querySelector('#slot7').innerHTML = player7Name
-        document.querySelector('#slot8').innerHTML = player8Name
+     
+       
         
 
         if (player1Name == 'default_blank_name') {
@@ -148,16 +154,17 @@ const Lobby = () =>{
           document.querySelector('#slot8').innerHTML = 'vaga 8'
           document.querySelector('#slotbox8').style.backgroundColor = 'rgb(0,0,0,0.5)'
         }        
-      }, 5000);
+      
     
-      return () => clearInterval(interval); // This represents the unmount function, in which you need to clear your interval to prevent memory leaks.
     }, [])
 
-    socket.onmessage = function(event) {
-      console.log("here", event.data);
-      if (event.data === 'sm=lobby:update user locations') {
+    socket.current.onmessage = function(event) {
+      const data0 = JSON.parse(event.data)      
+      const data = JSON.parse(data0.body)
+      console.log(data0)
+      if (data.action === 'UpdateLobby') {
         updateCountrySlot()
-      }      
+      }  
     };    
     
     useEffect(()=>{
@@ -166,20 +173,22 @@ const Lobby = () =>{
     )
 
     const updateCountrySlot = async () => {
+     
       const userIdArray = [user1Id, user2Id, user3Id, user4Id, user5Id, user6Id, user7Id, user8Id]
-      
       var idata = await getUserData(sessionStorage.getItem('userid'))
       sessionStorage.setItem('userlocation',idata.location)
       sessionStorage.setItem('usercolor',idata.color)
 
       for (var i=0;i<=7;i++){
         if(userIdArray[i]) {
-          var udata = await getUserData(userIdArray[i])
+          var udata = await getUserData(userIdArray[i])          
+          console.log(udata.color+udata.location)
           document.querySelector('#countryslot'+(i+1)).innerText = udata.location
-          try {document.querySelector('#slotbox'+(i+1)).style.backgroundColor = udata.color} catch{console.log('error on '+i)}
-          var text = (udata.location+'Color').replace(/ /g,'')
-          document.querySelector('#countrybox'+(i+1)).style.backgroundColor = udata.color
-          document.querySelector('#countrybox'+(i+1)).classList.add('myGlower-white2')
+          document.querySelector('#avatarbox'+(i+1)).style.backgroundImage = 'url(/avatars/'+udata.avatar+'.png)'
+          document.querySelector('#avatarbox'+(i+1)).style.borderColor = udata.color
+          document.querySelector('#avatarbox'+(i+1)).style.borderStyle = 'solid'
+          document.querySelector('#avatarbox'+(i+1)).style.borderWidth = '5px'
+          document.querySelector('#avatarbox'+(i+1)).style.borderBottomWidth = '11px'
          if(userIdArray[i].location === 'default' || !userIdArray[i]) {
           document.querySelector('#countryslot'+(i+1)).innerText = ''
           document.querySelector('#countrybox'+(i+1)).style.backgroundColor = 'rgb(211,211,211,0.3)'
@@ -187,12 +196,20 @@ const Lobby = () =>{
          }                    
         }
       }
+      
+    }
+
+    const setLocationsf = async () => {
+      const locations = await setLocations()      
+      WebSocketSend('UpdateLobby')
+      //return
     }
 
     const navigate = useNavigate();
 
     const WebSocketSend = (data) => {
-      socket.send(data)
+      const body = JSON.stringify({"action": data})
+      socket.current.send(body)
     } 
 
   return (
@@ -251,7 +268,8 @@ const Lobby = () =>{
 
         <div className='row mt-2'>
           <div className='col '>
-          <div className=' lobby-avatar1'>
+          <div className=' lobby-avatar' id ='avatarbox1' src={''}>
+            <img className='lobby-avatar p-absolute' id='avatar1' src={''}/>
             <div className='lobbybox container ' id='slotbox1'>
               <div className=' vertical-center'>
                <span className='text-center' id='slot1'>vaga 1</span>
@@ -268,7 +286,7 @@ const Lobby = () =>{
           </div>
 
           <div className='col'>
-          <div className=' lobby-avatar2'>
+          <div className=' lobby-avatar ' id ='avatarbox2'>
             <div className='lobbybox container' id='slotbox2'>
               <div className=' vertical-center'>
                <span className='text-center ' id='slot2'>vaga 2</span>
@@ -286,6 +304,7 @@ const Lobby = () =>{
 
         <div className='row mt-2'>
           <div className='col'>
+          <div className=' lobby-avatar' id ='avatarbox3'>
             <div className='lobbybox container' id='slotbox3'>
               <div className=' vertical-center'>
                <span className='text-center ' id='slot3'>vaga 3</span>
@@ -298,7 +317,9 @@ const Lobby = () =>{
               </div>           
             </div>
           </div>
+          </div>
           <div className='col'>
+          <div className=' lobby-avatar' id ='avatarbox4'>
             <div className='lobbybox container' id='slotbox4'>
               <div className=' vertical-center'>
                <span className='text-center ' id='slot4'>vaga 4</span>
@@ -312,9 +333,11 @@ const Lobby = () =>{
             </div>
           </div>         
         </div>
+        </div>
 
         <div className='row mt-2'>
           <div className='col'>
+          <div className=' lobby-avatar' id ='avatarbox5'>
             <div className='lobbybox container' id='slotbox5'>
               <div className=' vertical-center'>
                <span className='text-center 'id='slot5'>vaga 5</span>
@@ -327,7 +350,9 @@ const Lobby = () =>{
               </div>           
             </div>
           </div>
+          </div>
           <div className='col'>
+          <div className=' lobby-avatar' id ='avatarbox6'>
             <div className='lobbybox container' id='slotbox6'>
               <div className=' vertical-center'>
                <span className='text-center 'id='slot6'>vaga 6</span>
@@ -341,9 +366,10 @@ const Lobby = () =>{
             </div>
           </div>         
         </div>
-
+          </div>
         <div className='row mt-2 mb-2' >
           <div className='col'>
+          <div className=' lobby-avatar' id ='avatarbox7'>
             <div className='lobbybox container' id='slotbox7'>
               <div className=' vertical-center'>
                <span className='text-center 'id='slot7'>vaga 7</span>
@@ -356,7 +382,9 @@ const Lobby = () =>{
               </div>           
             </div>
           </div>
+          </div>
           <div className='col'>
+          <div className=' lobby-avatar' id ='avatarbox8'>
             <div className='lobbybox container' id='slotbox8'>
               <div className=' vertical-center'>
                <span className='text-center 'id='slot8'>vaga 8</span>
@@ -370,7 +398,7 @@ const Lobby = () =>{
             </div>
           </div>         
         </div>
-      
+        </div>  
 
         </div>
     </header>
@@ -402,8 +430,7 @@ const Lobby = () =>{
           </div>
           <div className='col-2 p-0  center'>
             <button className='ui-btn btn' onClick={(e)=> {
-              setLocations()
-              WebSocketSend('cm=lobby:update user locations')
+              setLocationsf()
               }}>
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-arrow-clockwise white" viewBox="0 0 16 16">
               <path fillRule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/>

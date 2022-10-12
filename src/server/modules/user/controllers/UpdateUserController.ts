@@ -6,7 +6,7 @@ export class UpdateUserController {
   async handle(request: Request, response: Response): Promise<Response> {
     try {
       const { userId } = request.params
-      const {  location, actions, name, roomId,
+      const {  gender, avatar, location, actions, name, roomId,
         BPD1,
         BPD2,
         BPD3,
@@ -38,7 +38,7 @@ export class UpdateUserController {
        BPD29,
        BPD30 } = request.body
       const updateUserUseCase = container.resolve(UpdateUserUseCase)
-      const user = await updateUserUseCase.execute({ actions: Number(actions),name, roomId: Number(roomId), userId: Number(userId),
+      const user = await updateUserUseCase.execute({ actions: Number(actions),gender, avatar,name, roomId: Number(roomId), userId: Number(userId),
         location,
         BPD1,
         BPD2,

@@ -58,6 +58,8 @@ CREATE TABLE "user" (
     "roomId" INTEGER NOT NULL,
     "color" TEXT NOT NULL DEFAULT 'none',
     "location" TEXT NOT NULL DEFAULT 'default',
+    "avatar" TEXT NOT NULL DEFAULT 'default',
+    "gender" TEXT NOT NULL DEFAULT 'male',
     "actions" INTEGER NOT NULL DEFAULT 2,
     "BPD1" BOOLEAN NOT NULL DEFAULT false,
     "BPD2" BOOLEAN NOT NULL DEFAULT false,

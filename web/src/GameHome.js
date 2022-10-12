@@ -13,17 +13,22 @@ const GameHome = () =>{
     const [isMyTurn, setIsMyTurn] = useState(false)
     const cookieUserId = sessionStorage.getItem('userid')
 
-    const socket = new WebSocket("wss://merchants-api.onrender.com:8082")
+    const socket = new WebSocket("wss://exaecwjnc9.execute-api.sa-east-1.amazonaws.com/production")
 
     socket.onopen = () => {
-        socket.send('test')
+        console.log('connected to ws')
+        const body =  JSON.stringify({"action":"Discovery","message":'jogador 3 descobriu carpintaria e +3!', "color":'darkturquoise', "avatar": "f2"})
+       // socket.send(body)
     }
 
-    socket.onmessage = (event) => {
-        const wsRMData = JSON.parse(event.data)
-        if (wsRMData.type === 'newBlueprintDiscoveredNotification') {
-            showNotification(wsRMData.message, wsRMData.color)
-        }
+    socket.onmessage = (event) => { 
+      const data0 = JSON.parse(event.data)
+      const data = JSON.parse(data0.body)
+
+      if (data.action === 'Discovery') {
+        showNotification(data.message, data.color, data.avatar)
+      }
+       
     }
 
     useEffect(() =>  {
@@ -73,14 +78,14 @@ const GameHome = () =>{
         if (remainingMoves <= 0) {   
             
         }
-        }, 300);
+        }, 16300);
     
         return () => clearInterval(interval);
     }, [])  
     
-    function showNotification(message, color) {
-        console.log(color)
+    function showNotification(message, color, avatar) {
         document.querySelector('#notf1').style.backgroundColor = color
+        document.querySelector('#notifi-avatar').src = '/avatars/'+avatar+'.png'
         document.querySelector('#notificationContainer').classList.remove('slide-out-blurred-top')
         document.querySelector('#notificationContainer').classList.add('slide-in-blurred-top')
         document.querySelector('#notificationContainer').classList.remove('d-none')
@@ -102,21 +107,29 @@ const GameHome = () =>{
 
     <nav className="navbar navbar-expand-lg bg-light d-none fixed-top slide-in-blurred-top" id='notificationContainer'>
             <div className="container-fluid w-100 white" id ='notf1'>            
-            <div className="row w-100 m-0">                             
-                  <div className="col d-flex justify-content-center">
-                    <div className=" navbar-right pull-right tracking-in-expand center" >
+            <div className="row w-100 m-0"> 
+
+                <div className="col-9 d-flex justify-content-center slide-in-left">
+                    <div className=" navbar tracking-in-expand center" >
                         <h5 className ='useMyFont  m-0 center' id='notificationText'>
                         </h5>
                     </div>                    
-                </div>              
+                </div>
+
+                <div className="col-3 p-0 d-flex justify-content-center">
+                    <div className='notification-avatar-circle myGlower-circle justify-content-center d-flex slide-in-left'>
+                        <img src={""} className='notification-avatar scale-up-center' id ='notifi-avatar' alt='logo' />
+                    </div>          
+                </div>  
+
             </div>           
             </div>        
      </nav>  
         
     
 
-    <nav className="navbar navbar-expand-lg bg-light  fixed-bottom ">
-            <div className="container-fluid w-100">            
+    <nav className="navbar navbar-expand-lg  p-0 fixed-bottom ">
+            <div className="container-fluid deeppinkbg w-100">            
             <div className="row w-100 m-0">
                 <div className="col-5">
                     <button className = 'btn  ui-btn d-flex align-items-start mt-1 mb-1' onClick={(e) => {
@@ -130,7 +143,7 @@ const GameHome = () =>{
                
 
                   <div className="col-7 d-flex justify-content-center">
-                    <div className=" navbar-right pull-right tracking-in-expand center " ><h1 className ='useMyFont  m-0 center'>Merchants</h1></div>                    
+                    <div className=" navbar-right pull-right tracking-in-expand center " ><h1 className ='useMyFont  m-0 center white'>Merchants</h1></div>                    
                 </div>              
             </div>           
             </div>        
@@ -146,7 +159,7 @@ const GameHome = () =>{
                 <div className="col center puff-in-center">
                  <div className="circle1 m-0">
                     <div className='avatar-circle justify-content-center d-flex'>
-                    <img src={"/avatars/f3.png"} className='App-logo ' id ='logo' alt='logo' />
+                    <img src={"/avatars/m7.png"} className='App-logo ' id ='logo' alt='logo' />
                     </div>
                     <div className="text">
                         <p>

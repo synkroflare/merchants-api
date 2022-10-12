@@ -1,7 +1,7 @@
 import { prisma, PrismaClient } from '@prisma/client'
 import { IUser } from 'server/modules/global/models/IUser'
 import { inject, injectable } from 'tsyringe'
-import { IUserRepository, TSubActionUserData, TUpdateUserData } from '../../IUserRepository'
+import { IUserRepository, TCreateUserData, TSubActionUserData, TUpdateUserData } from '../../IUserRepository'
 
 
 @injectable()
@@ -12,11 +12,13 @@ export class PrismaUserRepository implements IUserRepository {
   ) { 
   }
 
-  async create(data: {name: string, roomId: number, userId:number}): Promise<IUser> {
+  async create(data: TCreateUserData): Promise<IUser> {
        
 
     const companies = await this.client.user.create({
       data: {
+        gender: data.gender, 
+        avatar: data.avatar,
         name: data.name,
         roomId: data.roomId,
         userId: data.userId
@@ -140,6 +142,8 @@ export class PrismaUserRepository implements IUserRepository {
           userId: userIdInt
         },
         data: {
+          gender: data.gender,
+          avatar: data.avatar,
           location: data.location,
           actions: data.actions,
           roomId: data.roomId,
@@ -234,6 +238,8 @@ export class PrismaUserRepository implements IUserRepository {
    
     } catch{ }
 
+    if (room.usedSlots == 1) return null
+
     try {
       await this.client.user.updateMany(
       {
@@ -247,6 +253,8 @@ export class PrismaUserRepository implements IUserRepository {
       }
     )
     } catch{}
+
+    if (room.usedSlots == 2) return null
 
     try {
       await this.client.user.updateMany(
@@ -262,6 +270,8 @@ export class PrismaUserRepository implements IUserRepository {
     )
     } catch{}
 
+    if (room.usedSlots == 3) return null
+
     try {
       await this.client.user.updateMany(
       {
@@ -275,6 +285,8 @@ export class PrismaUserRepository implements IUserRepository {
       }
     )
     } catch{}
+
+    if (room.usedSlots == 4) return null
 
     try {
       await this.client.user.updateMany(
@@ -290,6 +302,8 @@ export class PrismaUserRepository implements IUserRepository {
     )
     } catch{}
 
+    if (room.usedSlots == 5) return null
+
     try {
       await this.client.user.updateMany(
       {
@@ -303,6 +317,8 @@ export class PrismaUserRepository implements IUserRepository {
       }
     )
     } catch{}
+
+    if (room.usedSlots == 6) return null
 
     try {
       await this.client.user.updateMany(
@@ -318,6 +334,8 @@ export class PrismaUserRepository implements IUserRepository {
     )
     } catch{}
 
+    if (room.usedSlots == 7) return null
+
     try {
       await this.client.user.updateMany(
       {
@@ -331,7 +349,6 @@ export class PrismaUserRepository implements IUserRepository {
       }
     )
     } catch{}
-  
   
     
     return null
